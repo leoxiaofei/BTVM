@@ -47,7 +47,7 @@ void VM::parse(const string &code)
         delete this->_ast;
 
     this->state = VMState::NoState;
-    this->allocations.clear();
+	clear();
     VMUnused(code);
 }
 
@@ -64,6 +64,11 @@ void VM::dump(const string &file, const string &astfile)
 void VM::loadAST(NBlock *ast)
 {
     this->_ast = ast;
+}
+
+NBlock* VM::getAST() const
+{
+	return this->_ast;
 }
 
 VMValuePtr VM::interpret(const NodeList &nodelist)
@@ -949,9 +954,7 @@ VMValuePtr VM::error(const string &msg)
     cout << msg << endl;
 
     this->state = VMState::Error;
-    this->_globalscope.variables.clear();
-    this->_globalscope.declarations.clear();
-    this->_scopestack.clear();
+	clear();
     return VMValuePtr();
 }
 
@@ -1109,6 +1112,14 @@ int64_t VM::sizeOf(NIdentifier *nid)
         return this->sizeOf(ndecl);
 
     return this->sizeOf(this->variable(nid));
+}
+
+void VM::clear()
+{
+    this->_globalscope.variables.clear();
+    this->_globalscope.declarations.clear();
+    this->_scopestack.clear();
+    this->allocations.clear();
 }
 
 VMValuePtr VM::callVM(NCall *ncall)

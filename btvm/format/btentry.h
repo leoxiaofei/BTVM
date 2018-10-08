@@ -22,7 +22,7 @@ struct BTLocation
     uint64_t size;
 };
 
-class BTEntry;
+struct BTEntry;
 
 typedef std::shared_ptr<BTEntry> BTEntryPtr;
 typedef std::vector<BTEntryPtr> BTEntryList;

@@ -9,8 +9,8 @@
 
 #define ColorInvalid 0xFFFFFFFF
 
-class Node;
-class VMValue;
+struct Node;
+struct VMValue;
 
 namespace VMValueType
 {

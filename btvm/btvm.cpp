@@ -66,6 +66,14 @@ BTEntryList BTVM::createTemplate()
     return btfmt;
 }
 
+bool BTVM::readIO(BTVMIO* btvmio)
+{
+	this->clear();
+	_btvmio = btvmio;
+
+	return this->interpret(this->getAST()) != 0;
+}
+
 void BTVM::print(const string &s)
 {
     cout << s;

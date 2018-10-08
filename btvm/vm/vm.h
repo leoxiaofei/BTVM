@@ -54,6 +54,7 @@ class VM
         void dump(const std::string& file, const std::string& astfile);
         VMValuePtr interpret(Node* node);
         void loadAST(NBlock* _ast);
+        NBlock* getAST() const;
 
     private:
         VMValuePtr interpret(const NodeList& nodelist);
@@ -113,6 +114,7 @@ class VM
         int64_t sizeOf(NIdentifier* nid);
         int64_t sizeOf(NVariable* nvar);
         int64_t sizeOf(Node* node);
+		void clear();
 
     private:
         template<typename T> T symbol(NIdentifier* nid, std::function<T(const VMScope&, NIdentifier*)> cb) const;

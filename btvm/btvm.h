@@ -14,11 +14,12 @@ class BTVM: public VM
         typedef std::unordered_map<uint64_t, uint32_t> ColorMap;
 
     public:
-        BTVM(BTVMIO* btvmio);
+        BTVM(BTVMIO* btvmio = 0); 
         ~BTVM();
         virtual void parse(const std::string& code);
         virtual uint32_t color(const std::string& color) const;
         BTEntryList createTemplate();
+		bool readIO(BTVMIO* btvmio);
 
     protected:
         virtual void print(const std::string& s);
